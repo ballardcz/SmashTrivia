@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Trivia Game</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+
+
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <h1 class="display-4">Welcome to Trivia Terror</h1>
+                <p class="lead">Where fingers go to die</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <p class="inline flex">
+                <div class="col-md-6">
+                    <button id="Login" class="btn btn-light flex-child">Login!</button>
+                </div>
+                <div class="col-md-6">
+                    <button id="Guest" class="btn btn-dark flex-child">Guest!</button>
+                </div>
+            </p>
+        </div>
+    </div>
+
+    <div id="first" class="hidden">
+
+        <div class="card" style="width: 50%;">
+
+            <div class="card-body">
+                <h5 class="card-title">1st Question!</h5>
+                <div class="card-subtitle " class="hidden2">
+                    <div>
+                        <div id="timer" class="mb-2 text-muted">
+                            <h3>GO!</h3>
+                        </div>
+                    </div>
+                    <div id="here" class="btn-group-vertical">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="triviaGame.js"></script>
+    <script type="text/javascript" src="triviaGame2.js"></script>
+
+</body>
+
+</html>
