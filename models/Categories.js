@@ -11,7 +11,7 @@
    Title: {
      type: String,
      unique: true,
-     required: "Title is Required",
+     required: [true, "Title is Required!"],
      validate: [
        function (input) {
          return input.length >= 1;
@@ -22,39 +22,27 @@
    // `books` is an array that stores ObjectIds
    // The ref property links these ObjectIds to the Book model
    // This allows us to populate the Library with any associated Books
-   Anime: [{
+   Anime: 
+     {
      type: Schema.Types.ObjectId,
      ref: "Anime"
-   }]
-   // ,
-   // books: [
-   //   {
-   //     type: Schema.Types.ObjectId,
-   //     ref: "Book"
-   //   }
-   // ]
+   }
+  ,
+   Books: 
+     {
+       type: Schema.Types.ObjectId,
+       ref: "Books"
+     }
+   ,
+   Movies: 
+     {
+       type: Schema.Types.ObjectId,
+       ref:"Movies"
+     }
  });
 
  // This creates our model from the above schema, using mongoose's model method
  var categories = mongoose.model("categories", categoriesSchema);
 
- // Export the Library model
+ // Export the model
  module.exports = categories;
-
-// //to update a specific id
-//  db.categories.update({
-//    _id: ObjectId("5b14ac49e1953dc28b886f17")
-//  }, {
-//    $push: {
-//      "Books": [
-//        "Sci-fi",
-//        "Authors",
-//        "Random"
-//      ]
-//    }
-//  })
-
-//  //to remove a specific id use this
-//  db.categories.remove({
-//   _id: ObjectId("5b214b70b84ec3a2fa14f685")
-// })
