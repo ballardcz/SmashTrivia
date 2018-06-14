@@ -3,56 +3,71 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var path = require('path');
+
+//require the models file
 
 //start express
 var app = express();
-
 //Specify Connect Port
 var PORT = 3000;
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Use body-parser for handling form submissions
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 // Set up a static folder (public) for our web app
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Get the default connection
 var db = mongoose.connection;
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/smasht");
-
+// BRinging in the mongoose promise
 mongoose.Promise = global.Promise;
 
 // This makes sure that any errors are logged if mongodb runs into an issue
 db.on("error", console.error.bind(console, 'MongoDB connection error:'));
  
+categories.create({
+  name: "categories"
+})
+.then(function (dbcategories) {
+  // If saved successfully, print the new Library document to the console
+  console.log(dbcategories);
+})
+.catch(function (err) {
+  // If an error occurs, print it to the console
+  console.log(err.message);
+})
+
 // When the server starts, create and save a new Library document to the db
 // The "unique" rule in the Library model's schema will prevent duplicate libraries from being added to the server
-db.categories.create({
-    name: "categories"
-  })
-  .then(function (dbcategories) {
-    // If saved successfully, print the new Library document to the console
-    console.log(dbcategories);
-  })
-  .catch(function (err) {
-    // If an error occurs, print it to the console
-    console.log(err.message);
-  });
-// When the server starts, create and save a new User document to the db
-// The "unique" rule in the User model's schema will prevent duplicate users from being added to the server
-db.User.create({
-    name: "Master User"
-  })
-  .then(function (dbUser) {
-    console.log(dbUser);
-  })
-  .catch(function (err) {
-    console.log(err.message);
-  });
+// db.categories.create({
+//     name: "categories"
+//   })
+//   .then(function (dbcategories) {
+//     // If saved successfully, print the new Library document to the console
+//     console.log(dbcategories);
+//   })
+//   .catch(function (err) {
+//     // If an error occurs, print it to the console
+//     console.log(err.message);
+//   });
+// // When the server starts, create and save a new User document to the db
+// // The "unique" rule in the User model's schema will prevent duplicate users from being added to the server
+// db.User.create({
+//     name: "Master User"
+//   })
+//   .then(function (dbUser) {
+//     console.log(dbUser);
+//   })
+//   .catch(function (err) {
+//     console.log(err.message);
+//   });
 
 
 // Routes

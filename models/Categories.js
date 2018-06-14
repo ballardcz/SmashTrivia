@@ -44,5 +44,10 @@
  // This creates our model from the above schema, using mongoose's model method
  var categories = mongoose.model("categories", categoriesSchema);
 
+ categories.save(function (err) {
+  if (err) return handleError(err);
+  // saved!
+});
+
  // Export the model
  module.exports = categories;
