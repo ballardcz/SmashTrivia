@@ -5,12 +5,11 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var path = require('path');
 
-
 //require the models file
 require("./models/categories.js");
-require("./models/Index.js");
-require("./models/Anime.js");
-require("./models/Books.js");
+// require("./models/Index.js");
+// require("./models/Anime.js");
+// require("./models/Books.js");
 //start express
 var app = express();
 //Specify Connect Port
@@ -159,7 +158,13 @@ app.get("/categories", function (req, res) {
 //     });
 // });
 
+//app.post('/api/categories/save', categories.save);
+
+app.use("*", (req,res) => {
+  res.sendFile(path + "404.html");
+});
+
 // Start the server
 app.listen(PORT, function () {
   console.log("App running on port " + PORT + "!");
-});
+}); 

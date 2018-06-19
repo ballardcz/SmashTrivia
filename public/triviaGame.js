@@ -15,11 +15,11 @@ $("#Login").on("click", function () {
 });
 $("#newQuestion").on("click", function () {
   newQuestion();
-  forEach(function($("#newQuestion")) {
+  forEach(function( id = "#newQuestion") {
     let add = 0;
     // $("#newQuestion").
     console.log($("#newQuestion") + add++)
-  }
+  })
 });
 
 function GuestStart() {
