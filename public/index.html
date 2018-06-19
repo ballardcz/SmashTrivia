@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="/js/getrequest.js"></script>
+    <script src="/js/postrequest.js"></script>
 
 </head>
 
@@ -36,7 +38,7 @@
                             <span class="close">&times;</span>
                             <p>Some text in the Modal..</p>
                         </div>
-4
+                        4
                     </div>
                     <!-- <form action="/submit" method="post">
                         <h1>Hi User!</h1>
@@ -59,14 +61,27 @@
         </div>
     </div>
 
-    <div id="first" class="hidden">
+    <div id="Newtrivia" class="hidden">
         <div class="card" style="width: 50%;">
             <div class="card-body">
                 <h5 class="card-title">Choose A Category! </h5>
                 <div class="card-subtitle " class="hidden2">
                     <div>
                         <div id="timer" class="mb-2 text-muted">
-                            <h3>GO!</h3>
+                            <p>
+                                <form id="userForm" action="/submit" method="post">
+                                    <div class="form-group">
+                                        <label for="category">Enter Category:</label>
+                                        <input type="text" class="form-control" id="category" placeholder="Enter A New Category!" />
+                                    </div>
+                                    <div class="form-group" id="newQuestionHolder">
+                                        <label for="lastname">LastName:</label>
+                                        <input type="text" class="form-control" id="question" placeholder="New Question" />
+                                    </div>
+                                    <button type="question" class="btn btn-success" id="newQuestion">New Question</button>
+                                    <button type="submit" class="btn btn-default">Submit </button>
+                                </form>
+                            </p>
                         </div>
                         <tbody>
                             <!-- Results from DB here -->

@@ -5,8 +5,12 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var path = require('path');
 
-//require the models file
 
+//require the models file
+require("./models/categories.js");
+require("./models/Index.js");
+require("./models/Anime.js");
+require("./models/Books.js");
 //start express
 var app = express();
 //Specify Connect Port
@@ -14,7 +18,7 @@ var PORT = 3000;
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
-// Use body-parser for handling form submissions
+// Use body-parser for handl4ing form submissions
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -24,14 +28,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // BRinging in the mongoose promise
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/smasht");
+if (mongoose.connect("mongodb://localhost/smasht")) {
+  console.log("Database connected!")
+} else {
+  throw err
+}
 // Get the default connection
 var db = mongoose.connection;
 // This makes sure that any errors are logged if mongodb runs into an issue
-//db.on("error", console.error.bind(console, 'MongoDB connection error:'));
- 
+db.on("error", console.error.bind(console, 'MongoDB connection error:'));
+
 // db.categories.create({
 //   name: "categories"
 // })
@@ -77,17 +85,17 @@ app.get("/", function (req, res) {
 });
 
 // hit this path, display every entry in the trivia Category collection, sorted by Questions
-app.get("/categories", function(req, res) {
-//grab all categories
-   db.categories.find({});
-  // .then(function (dbcategories) {
-  //     // If all Notes are successfully found, send them back to the client
-  //     res.json(dbcategories);
-  //   })
-  //   .catch(function (err) {
-  //     // If an error occurs, send the error back to the client
-  //     res.json(err);
-  //   });
+app.get("/categories", function (req, res) {
+  //grab all categories
+  db.categories.find({})
+    .then(function (dbcategories) {
+      // If all Notes are successfully found, send them back to the client
+      res.json(dbcategories);
+    })
+    .catch(function (err) {
+      // If an error occurs, send the error back to the client
+      res.json(err);
+    });
 });
 
 // // 2. At the "/all" path, display every entry int he Anime Collection
