@@ -10,11 +10,11 @@ require("./models/categories.js");
 // require("./models/Index.js");
 // require("./models/Anime.js");
 // require("./models/Books.js");
+
 //start express
 var app = express();
 //Specify Connect Port
 var PORT = 3000;
-
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Use body-parser for handl4ing form submissions
@@ -24,8 +24,6 @@ app.use(bodyParser.urlencoded({
 }));
 // Set up a static folder (public) for our web app
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 // BRinging in the mongoose promise
 // mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
@@ -79,8 +77,11 @@ db.on("error", console.error.bind(console, 'MongoDB connection error:'));
 
 // Routes
 // 1. At the root path, send a simple hello world message to the browser
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
+});
+app.get("/404", (req,res) => {
+  res.sendFile(path.join(__dirname, "404.html"));
 });
 
 // hit this path, display every entry in the trivia Category collection, sorted by Questions
@@ -160,9 +161,7 @@ app.get("/categories", function (req, res) {
 
 //app.post('/api/categories/save', categories.save);
 
-app.use("*", (req,res) => {
-  res.sendFile(path + "404.html");
-});
+
 
 // Start the server
 app.listen(PORT, function () {

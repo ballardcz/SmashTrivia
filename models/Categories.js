@@ -1,9 +1,9 @@
  const mongoose = require("mongoose");
 
  // Save a reference to the Schema constructor
- const Schema = mongoose.Schema;
+ //const Schema = mongoose.Schema;
 
- const categoriesSchema = new Schema({
+ const categoriesSchema = mongoose.Schema({
    // `name` must be of type String
    // `name` must be unique, the default mongoose error message is thrown if a duplicate value is given
    category:{
